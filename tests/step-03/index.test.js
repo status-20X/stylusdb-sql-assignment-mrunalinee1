@@ -18,3 +18,11 @@ test('Parse SQL Query', () => {
     });
 });
 
+
+
+test('Parse SQL Query - Invalid Format', () => {
+    const invalidQuery = 'SELECT id name sample'; // Missing "FROM" keyword
+    expect(() => parseQuery(invalidQuery)).toThrow('Invalid query format');
+});
+
+
