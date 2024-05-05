@@ -15,10 +15,15 @@ test('Parse SQL Query', () => {
     const parsed = parseQuery(query);
     expect(parsed).toEqual({
         fields: ['id', 'name'],
-        table: 'sample',
-        whereClause: null
+        table: 'sample'
     });
 });
+
+test('Parse SQL Query - Invalid Format', () => {
+    const invalidQuery = 'SELECT id name sample'; // Missing "FROM" keyword
+    expect(() => parseQuery(invalidQuery)).toThrow('Invalid query format');
+});
+
 
 test('Execute SQL Query', async () => {
     const query = 'SELECT id, name FROM sample';
