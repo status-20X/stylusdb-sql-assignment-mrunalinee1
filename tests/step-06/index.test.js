@@ -77,3 +77,9 @@ test('Execute SQL Query with Multiple WHERE Clause', async () => {
     expect(result.length).toBe(1);
     expect(result[0]).toEqual({ id: '1', name: 'John' });
 });
+
+// Test case for an invalid SQL query with incorrect WHERE clause syntax
+test('Parse SQL Query with Incorrect WHERE Clause Syntax', () => {
+    const query = 'SELECT id, name FROM sample WHERE age = 30 AND name = John OR age < 25';
+    expect(() => parseQuery(query)).toThrow('Invalid query format');
+});
